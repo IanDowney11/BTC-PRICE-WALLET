@@ -12,13 +12,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 
-function createData(
-  name: string,
-  US: number,
-  AU: number,
-  NZ: number,
-) {
+
+function tableRow(name, US, AU, NZ) {
   return { name, US, AU, NZ };
 }
 
@@ -72,16 +69,17 @@ useEffect(() => {
 
 
 const rows = [
-  createData('1 BTC', (Math.round(usPrice * 100) / 100).toLocaleString(), (Math.round(auPrice * 100) / 100).toLocaleString(), (Math.round(nzPrice * 100) / 100).toLocaleString()),
-  createData('1 SAT', (usPrice/100000000).toFixed(5), (auPrice/100000000).toFixed(5), (nzPrice/100000000).toFixed(5)),
-  createData('1000 SATS', (Math.round(usPrice/100000 * 100) / 100).toLocaleString(), (Math.round(auPrice/100000 * 100) / 100).toLocaleString(), (Math.round(nzPrice/100000 * 100) / 100).toLocaleString()),
-  createData('100,000 SATS', (Math.round(usPrice/1000 * 100) / 100).toLocaleString(), (Math.round(auPrice/1000 * 100) / 100).toLocaleString(), (Math.round(nzPrice/1000 * 100) / 100).toLocaleString()),
-  createData('1,000,000 SATS', (Math.round(usPrice/100 * 100) / 100).toLocaleString(), (Math.round(auPrice/100 * 100) / 100).toLocaleString(), (Math.round(nzPrice/100 * 100) / 100).toLocaleString()),
+  tableRow('1 BTC', (Math.round(usPrice * 100) / 100).toLocaleString(), (Math.round(auPrice * 100) / 100).toLocaleString(), (Math.round(nzPrice * 100) / 100).toLocaleString()),
+  tableRow('1 SAT', (usPrice/100000000).toFixed(5), (auPrice/100000000).toFixed(5), (nzPrice/100000000).toFixed(5)),
+  tableRow('1000 SATS', (Math.round(usPrice/100000 * 100) / 100).toLocaleString(), (Math.round(auPrice/100000 * 100) / 100).toLocaleString(), (Math.round(nzPrice/100000 * 100) / 100).toLocaleString()),
+  tableRow('100,000 SATS', (Math.round(usPrice/1000 * 100) / 100).toLocaleString(), (Math.round(auPrice/1000 * 100) / 100).toLocaleString(), (Math.round(nzPrice/1000 * 100) / 100).toLocaleString()),
+  tableRow('1,000,000 SATS', (Math.round(usPrice/100 * 100) / 100).toLocaleString(), (Math.round(auPrice/100 * 100) / 100).toLocaleString(), (Math.round(nzPrice/100 * 100) / 100).toLocaleString()),
 ];
 
   return (
     <div className="App">
-      <h1>ILD's Bitcoin Price Calculator</h1>
+      
+      <h1><CurrencyBitcoinIcon /> ILD's Bitcoin Price Calculator <CurrencyBitcoinIcon /></h1>
 
       <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
