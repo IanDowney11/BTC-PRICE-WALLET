@@ -1,71 +1,73 @@
-import React, {useEffect, useState} from 'react';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
 import axios from "axios";
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
-import PriceCard from './components/PriceCard';
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import PriceCard from "./components/PriceCard";
 
 function App() {
-
   const [usPrice, setUSPrice] = useState(0);
   const [auPrice, setAUPrice] = useState(0);
   const [nzPrice, setNZPrice] = useState(0);
 
-const getPrice = () => {
-  axios
-    .get("https://api.coinbase.com/v2/prices/BTC-USD/spot")
-    .then((res) => {
-      setUSPrice(res.data.data.amount);
-    })
-    .catch((err) =>{
-      console.log(err);
-    })
+  const getPrice = () => {
+    axios
+      .get("https://api.coinbase.com/v2/prices/BTC-USD/spot")
+      .then((res) => {
+        setUSPrice(res.data.data.amount);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     axios
-    .get("https://api.coinbase.com/v2/prices/BTC-AUD/spot")
-    .then((res) => {
-      setAUPrice(res.data.data.amount);
-    })
-    .catch((err) =>{
-      console.log(err);
-    })
+      .get("https://api.coinbase.com/v2/prices/BTC-AUD/spot")
+      .then((res) => {
+        setAUPrice(res.data.data.amount);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     axios
-    .get("https://api.coinbase.com/v2/prices/BTC-NZD/spot")
-    .then((res) => {
-      setNZPrice(res.data.data.amount);
-    })
-    .catch((err) =>{
-      console.log(err);
-    })
+      .get("https://api.coinbase.com/v2/prices/BTC-NZD/spot")
+      .then((res) => {
+        setNZPrice(res.data.data.amount);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-};
-
-useEffect(() => {
-  getPrice();
-}, []);
-
-// Run these functions every 5 seconds after initial page load
-useEffect(() => {
-  const interval = setInterval(() => {
+  useEffect(() => {
     getPrice();
-  }, 5000);
-  return () => clearInterval(interval);
-}, []);
+  }, []);
+
+  // Run these functions every 5 seconds after initial page load
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getPrice();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="App">
-      
-      <h1><CurrencyBitcoinIcon /> ILD's Bitcoin Price Calculator <CurrencyBitcoinIcon /></h1>
-      
+      <div class="header">
+        <img
+          src="../logo192.png"
+          height={50}
+          style={{ display: "inline" }}
+          alt="BTC"
+        />
+        <h1> Price</h1>
+      </div>
+
       <PriceCard price={auPrice} country="AU" />
-      <PriceCard price={usPrice} country="US"/>
-      <PriceCard price={nzPrice} country="NZ"/>
-
-
+      <PriceCard price={usPrice} country="US" />
+      <PriceCard price={nzPrice} country="NZ" />
     </div>
   );
 }

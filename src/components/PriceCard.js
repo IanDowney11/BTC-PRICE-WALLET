@@ -29,14 +29,14 @@ export default function PriceCardData(props) {
 
   const Flag = () => {
     if(props.country === 'AU'){
-       return <img src="../AU.jpg" width="90%" alt="Australia" />;
+       return <img src="../AU.jpg" width="100" alt="Australia" />;
     }
     if(props.country === 'US'){
-        return <img src="../US.jpg" width="90%" alt="UAS" />;
+        return <img src="../US.jpg" width="100" alt="UAS" />;
      }
 
      if(props.country === 'NZ'){
-        return <img src="../NZ.jpg" width="90%" alt="New Zealand" />;
+        return <img src="../NZ.jpg" width="100" alt="New Zealand" />;
      }
  
     //
@@ -47,9 +47,12 @@ const style = { display: 'flex', justifyContent: 'center', alignItems: 'center'}
     <Box
       sx={{
         "& > :not(style)": {
-          m: 3
+          m: 1,
+          width: 350
         },
       }}
+      style={style}
+      
     >
 
         
@@ -60,7 +63,7 @@ const style = { display: 'flex', justifyContent: 'center', alignItems: 'center'}
           </Grid>
           <Grid item xs={8}>
             <Grid container spacing={2}>
-              <Grid>
+              <Grid pt={2}>
                 <Div>
                   <BTC />
                 </Div>
