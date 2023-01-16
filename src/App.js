@@ -5,19 +5,8 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
-
-
-function tableRow(name, US, AU, NZ) {
-  return { name, US, AU, NZ };
-}
+import PriceCard from './components/PriceCard';
 
 function App() {
 
@@ -67,47 +56,15 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
 
-
-const rows = [
-  tableRow('1 BTC', (Math.round(usPrice * 100) / 100).toLocaleString(), (Math.round(auPrice * 100) / 100).toLocaleString(), (Math.round(nzPrice * 100) / 100).toLocaleString()),
-  tableRow('1 SAT', (usPrice/100000000).toFixed(5), (auPrice/100000000).toFixed(5), (nzPrice/100000000).toFixed(5)),
-  tableRow('1000 SATS', (Math.round(usPrice/100000 * 100) / 100).toLocaleString(), (Math.round(auPrice/100000 * 100) / 100).toLocaleString(), (Math.round(nzPrice/100000 * 100) / 100).toLocaleString()),
-  tableRow('100,000 SATS', (Math.round(usPrice/1000 * 100) / 100).toLocaleString(), (Math.round(auPrice/1000 * 100) / 100).toLocaleString(), (Math.round(nzPrice/1000 * 100) / 100).toLocaleString()),
-  tableRow('1,000,000 SATS', (Math.round(usPrice/100 * 100) / 100).toLocaleString(), (Math.round(auPrice/100 * 100) / 100).toLocaleString(), (Math.round(nzPrice/100 * 100) / 100).toLocaleString()),
-];
-
   return (
     <div className="App">
       
       <h1><CurrencyBitcoinIcon /> ILD's Bitcoin Price Calculator <CurrencyBitcoinIcon /></h1>
+      
+      <PriceCard price={auPrice} country="AU" />
+      <PriceCard price={usPrice} country="US"/>
+      <PriceCard price={nzPrice} country="NZ"/>
 
-      <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell width={"25%"}>Currency</TableCell>
-            <TableCell align="right" width={"25%"}>US$</TableCell>
-            <TableCell align="right" width={"25%"}>AU$</TableCell>
-            <TableCell align="right">NZ$</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">${row.US}</TableCell>
-              <TableCell align="right">${row.AU}</TableCell>
-              <TableCell align="right">${row.NZ}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
 
     </div>
   );
