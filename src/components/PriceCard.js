@@ -18,8 +18,11 @@ export default function PriceCardData(props) {
     "BTC = $" + (Math.round(props.price * 100) / 100).toLocaleString();
   const SAT1 = () => "1 SAT = $" + (props.price / 100000000).toFixed(5);
   const SATS1000 = () =>
-    "1000 SATS = $" +
+    "1,000 SATS = $" +
     (Math.round((props.price / 100000) * 100) / 100).toFixed(2);
+  const SATS10000 = () =>
+    "10,000 SATS = $" +
+    (Math.round((props.price / 10000) * 100) / 100).toLocaleString();
   const SATS100000 = () =>
     "100,000 SATS = $" +
     (Math.round((props.price / 1000) * 100) / 100).toLocaleString();
@@ -28,38 +31,39 @@ export default function PriceCardData(props) {
     (Math.round((props.price / 100) * 100) / 100).toLocaleString();
 
   const Flag = () => {
-    if(props.country === 'AU'){
-       return <img src="../AU.jpg" width="100" alt="Australia" />;
+    if (props.country === "AU") {
+      return <img src="../AU.jpg" width="100" alt="Australia" />;
     }
-    if(props.country === 'US'){
-        return <img src="../US.jpg" width="100" alt="UAS" />;
-     }
+    if (props.country === "US") {
+      return <img src="../US.jpg" width="100" alt="UAS" />;
+    }
 
-     if(props.country === 'NZ'){
-        return <img src="../NZ.jpg" width="100" alt="New Zealand" />;
-     }
- 
+    if (props.country === "NZ") {
+      return <img src="../NZ.jpg" width="100" alt="New Zealand" />;
+    }
+
     //
-};
-const style = { display: 'flex', justifyContent: 'center', alignItems: 'center'}
+  };
+  const style = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
 
   return (
     <Box
       sx={{
         "& > :not(style)": {
           m: 1,
-          width: 350
+          width: 350,
         },
       }}
       style={style}
-      
     >
-
-        
       <Paper elevation={8}>
         <Grid container spacing={2}>
           <Grid item xs={4} style={style}>
-            <Flag/>
+            <Flag />
           </Grid>
           <Grid item xs={8}>
             <Grid container spacing={2}>
@@ -72,6 +76,9 @@ const style = { display: 'flex', justifyContent: 'center', alignItems: 'center'}
                 </Div>
                 <Div>
                   <SATS1000 />
+                </Div>
+                <Div>
+                  <SATS10000 />
                 </Div>
                 <Div>
                   <SATS100000 />
