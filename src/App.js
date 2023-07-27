@@ -6,6 +6,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import PriceCard from "./components/PriceCard";
+import CalcCard from "./components/CalcCard";
 
 function App() {
   const [usPrice, setUSPrice] = useState(0);
@@ -62,9 +63,9 @@ function App() {
           style={{ display: "inline" }}
           alt="BTC"
         />
-        <h1> Price</h1>
+        <h2 style={{padding: 8}}> Caclulator</h2>
       </div>
-
+      <CalcCard auPriceProp={auPrice} usPriceProp={usPrice} nzPriceProp={nzPrice} />
       <PriceCard price={auPrice} country="AU" />
       <PriceCard price={usPrice} country="US" />
       <PriceCard price={nzPrice} country="NZ" />
