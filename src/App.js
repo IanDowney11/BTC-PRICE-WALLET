@@ -7,6 +7,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import PriceCard from "./components/PriceCard";
 import CalcCard from "./components/CalcCard";
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const [usPrice, setUSPrice] = useState(0);
@@ -55,6 +56,7 @@ function App() {
   }, []);
 
   return (
+    
     <div className="App">
       <div class="header">
         <img
