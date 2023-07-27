@@ -56,16 +56,20 @@ function App() {
 
   return (
     <div className="App">
-      <div class="header">
+      <div class="header" style={{ width: 200 }}>
         <img
           src="../logo192.png"
           height={50}
           style={{ display: "inline" }}
           alt="BTC"
         />
-        <h2 style={{padding: 8}}> Caclulator</h2>
+        <h2 style={{}}> Calculator</h2>
       </div>
-      <CalcCard auPriceProp={auPrice} usPriceProp={usPrice} nzPriceProp={nzPrice} />
+      <CalcCard
+        auPriceProp={auPrice}
+        usPriceProp={usPrice}
+        nzPriceProp={nzPrice}
+      />
       <PriceCard price={auPrice} country="AU" />
       <PriceCard price={usPrice} country="US" />
       <PriceCard price={nzPrice} country="NZ" />
