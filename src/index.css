@@ -7,27 +7,4 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
-.header img {
-  float: left;
-}
-
-.header h1 {
-  position: relative;
-}
-
-.header{
-  margin: auto;
-  width: 10%;
-}
-
-@media only screen and (max-width: 400px) {
-.header{
-  margin: auto;
-  width: 40%;
-}
-}

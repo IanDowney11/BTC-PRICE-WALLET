@@ -1,13 +1,11 @@
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
+import { Box, Paper, Grid, Typography } from '@mui/material/'
 import { styled } from "@mui/material/styles";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-export default function PriceCardData(props) {
+export default function PriceCardData({country, price}) {
   const Div = styled("div")(({ theme }) => ({
     ...theme.typography.button,
     backgroundColor: theme.palette.background.paper,
@@ -15,59 +13,61 @@ export default function PriceCardData(props) {
   }));
 
   const BTC = () =>
-    "BTC = $" + (Math.round(props.price * 100) / 100).toLocaleString();
-  const SAT1 = () => "1 SAT = $" + (props.price / 100000000).toFixed(5);
+    <Typography>
+      {"BTC = $" + (Math.round(price * 100) / 100).toLocaleString()}
+    </Typography>
+  const SAT1 = () => 
+    <Typography>
+      {"1 SAT = $" + (price / 100000000).toFixed(5)}
+    </Typography>
   const SATS1000 = () =>
-    "1,000 SATS = $" +
-    (Math.round((props.price / 100000) * 100) / 100).toFixed(2);
+    <Typography>
+      {"1,000 SATS = $" + (Math.round((price / 100000) * 100) / 100).toFixed(2)}
+    </Typography>
   const SATS10000 = () =>
-    "10,000 SATS = $" +
-    (Math.round((props.price / 10000) * 100) / 100).toLocaleString();
+    <Typography>
+      {"10,000 SATS = $" + (Math.round((price / 10000) * 100) / 100).toLocaleString()}
+    </Typography>
   const SATS100000 = () =>
-    "100,000 SATS = $" +
-    (Math.round((props.price / 1000) * 100) / 100).toLocaleString();
+    <Typography>
+      {"100,000 SATS = $" + (Math.round((price / 1000) * 100) / 100).toLocaleString()}
+    </Typography>
   const SATS1000000 = () =>
-    "1,000,000 SATS = $" +
-    (Math.round((props.price / 100) * 100) / 100).toLocaleString();
+    <Typography>
+      {"1,000,000 SATS = $" +
+      (Math.round((price / 100) * 100) / 100).toLocaleString()}
+    </Typography>
 
   const Flag = () => {
-    if (props.country === "AU") {
-      return <img src="../AU.jpg" width="100" alt="Australia" />;
+    if (country === "AU") {
+      return <img src="../AU.jpg" width="100%" alt="Australia" />;
     }
-    if (props.country === "US") {
-      return <img src="../US.jpg" width="100" alt="UAS" />;
-    }
-
-    if (props.country === "NZ") {
-      return <img src="../NZ.jpg" width="100" alt="New Zealand" />;
+    if (country === "US") {
+      return <img src="../US.jpg" width="100%" alt="UAS" />;
     }
 
-    //
-  };
-  const style = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    if (country === "NZ") {
+      return <img src="../NZ.jpg" width="70%" alt="New Zealand" />;
+    }
+
   };
 
   return (
     <Box
       sx={{
-        "& > :not(style)": {
-          m: 1,
-          width: 350,
-        },
+        paddingY: 4,
+        w: '100%'
       }}
-      style={style}
     >
-      <Paper elevation={8}>
+      <Paper sx={{w: '100%'}} elevation={8}>
         <Grid container spacing={2}>
-          <Grid item xs={4} style={style}>
-            <Flag />
+          <Grid item xs={5}>
+            <Box style={{width: '100%', padding: 10}}>
+              <Flag />
+            </Box>
           </Grid>
-          <Grid item xs={8}>
-            <Grid container spacing={2}>
-              <Grid pt={2}>
+          <Grid item xs={7}>
+              <Grid style={{padding: 10}}>
                 <Div>
                   <BTC />
                 </Div>
@@ -89,7 +89,6 @@ export default function PriceCardData(props) {
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
       </Paper>
     </Box>
   );
